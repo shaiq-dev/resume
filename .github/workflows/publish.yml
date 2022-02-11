@@ -13,14 +13,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Tex to PDF
-        uses: ./actions/xelatex
-        env:
-          OUT_DIR: public
+
+      - name: Add Version
+        run: |
+          fileName="resume.tex"
+          echo "Substituting version number ${GITHUB_SHA::7} in file $fileName"
+          sed -i -e "s/version/${GITHUB_SHA::7}/" $fileName
+      
+      - name: Convert to PDF
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: resume.tex
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: files
-          path: public/
+          name: ResumeShaiqKar
+          path: resume.pdf
