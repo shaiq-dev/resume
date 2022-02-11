@@ -13,7 +13,6 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Install all TeX and LaTeX dependencies
 RUN apt-get update && \
-    add-apt-repository universe && \
     apt-get install --yes --no-install-recommends \
     texlive-full && \
     apt-get autoclean && apt-get --purge --yes autoremove && \
