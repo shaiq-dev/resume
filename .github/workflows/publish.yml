@@ -2,8 +2,8 @@ name: Publish Resume
 
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - main
 
 defaults:
   run:
@@ -13,7 +13,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -23,7 +22,7 @@ jobs:
           echo "Substituting version number ${GITHUB_SHA::7} in file $fileName"
           sed -i -e "s/version/${GITHUB_SHA::7}/" $fileName
           echo ${GITHUB_SHA::7} > version.txt
-      
+
       - name: Convert to PDF
         uses: xu-cheng/latex-action@v2
         with:
