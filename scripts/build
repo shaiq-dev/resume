@@ -1,8 +1,10 @@
 #!/bin/bash
 
+DR_ROOT=/home/ubuntu
 DR_NAME=resume
-DR_TEX_SOURCE=~/app/src
-DR_OUT=~/app/output
+DR_TEX_SOURCE=$DR_ROOT/app/src
+DR_OUT=$DR_ROOT/app/output
+
 
 if [ $(dpkg-query -W -f='${Status}' uuidgen 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then

@@ -1,8 +1,9 @@
 #!/bin/bash
 
+DR_ROOT=/home/ubuntu
 DR_REGION=ap-south-1
 DR_BUCKET=shaiq-resume
-DR_OUT=~/app/output
+DR_OUT=$DR_ROOT/app/output
 
 # Get the generated pdf file
 DR_ARTIFACT=$(ls $DR_OUT | tail -n 1)
