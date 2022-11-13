@@ -10,28 +10,24 @@ defaults:
     working-directory: .
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Add Version
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-southeast-1
+      
+      - name: Create CodeDeploy Deployment
+        id: deploy
         run: |
-          fileName="resume.tex"
-          echo "Substituting version number ${GITHUB_SHA::7} in file $fileName"
-          sed -i -e "s/version/${GITHUB_SHA::7}/" $fileName
-          echo ${GITHUB_SHA::7} > version.txt
-
-      - name: Convert to PDF
-        uses: xu-cheng/latex-action@v2
-        with:
-          root_file: resume.tex
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: ResumeShaiqKar
-          path: |
-            resume.pdf 
-            version.txt
+          aws deploy create-deployment \
+            --application-name ${{ secrets.APP_NAME }} \
+            --deployment-group-name ${{ secrets.APP_DEPLOYMENT_GROUP }} \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
