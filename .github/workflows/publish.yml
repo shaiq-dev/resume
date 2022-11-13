@@ -21,13 +21,13 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-southeast-1
+          aws-region: ap-south-1
       
       - name: Create CodeDeploy Deployment
         id: deploy
         run: |
           aws deploy create-deployment \
-            --application-name DRESUME \
-            --deployment-group-name DRESUME_DEPLOYMENT_GROUP \
+            --application-name ${{ secrets.APP_NAME }} \
+            --deployment-group-name ${{ secrets.APP_DEPLOYMENT_GROUP }} \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
