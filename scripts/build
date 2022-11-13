@@ -22,5 +22,6 @@ pdflatex $DR_TEX_SOURCE/$DR_NAME.tex
 rm *.aux *.log *.out *.bcf *.run.xml
 
 # Add the PDF to output
+rm -rf $DR_OUT
 mkdir -p $DR_OUT
 mv $DR_NAME.pdf $DR_OUT/$DR_NAME-$DR_VERSION.pdf
