@@ -8,7 +8,7 @@ hooks:
    - location: scripts/build
      timeout: 300
      runas: root
-  # ApplicationStart:
-  #  - location: scripts/start_server
-  #    timeout: 300
-  #    runas: root
+  ApplicationStart:
+   - location: scripts/process_doc
+     timeout: 300
+     runas: root
