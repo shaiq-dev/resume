@@ -12,3 +12,6 @@ hooks:
    - location: scripts/process_doc
      timeout: 300
      runas: root
+   - location: scripts/deploy_lambdas
+     timeout: 300
+     runas: root
