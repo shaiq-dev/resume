@@ -7,7 +7,7 @@ DR_FUNCTION=dresume
 
 # Create the zip file
 cd $DR_HANDLER
-zip -r $DR_FUNCTION.zip $DR_FUNCTION
+zip -r $DR_FUNCTION.zip index.js
 
 # Deploy the function
 aws lambda update-function-code --function-name $DR_FUNCTION --zip-file fileb://$DR_FUNCTION.zip --region $DR_REGION
