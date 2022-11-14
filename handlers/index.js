@@ -28,18 +28,18 @@ const handler = async (event, context) => {
 
     return {
       statusCode: 200,
-      body: {
+      body: JSON.stringify({
         message: 'SUCCESS',
         version,
         artifact: file,
-      },
+      }),
     }
   } catch (err) {
     return {
       statusCode: 500,
-      body: {
+      body: JSON.stringify({
         message: 'ERROR',
-      },
+      }),
     }
   }
 }
