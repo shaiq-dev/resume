@@ -28,6 +28,10 @@ const handler = async (event, context) => {
 
     return {
       statusCode: 200,
+      headers: {
+        "Access-Control-Allow-Origin": process.env.ALLOWED_ORIGINS, 
+        "Access-Control-Allow-Credentials": true,
+      },
       body: JSON.stringify({
         message: 'SUCCESS',
         version,
