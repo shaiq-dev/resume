@@ -16,7 +16,7 @@ sed -i -e "s/__VERSION__/$DR_VERSION/" $DR_TEX_SOURCE/$DR_NAME.tex
 
 # Build the tex source
 cd $DR_TEX_SOURCE
-pdflatex $DR_TEX_SOURCE/$DR_NAME.tex
+sudo pdflatex $DR_TEX_SOURCE/$DR_NAME.tex
 
 # Clean Up
 rm *.aux *.log *.out *.bcf *.run.xml
