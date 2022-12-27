@@ -19,7 +19,7 @@ cd $DR_TEX_SOURCE
 sudo pdflatex $DR_TEX_SOURCE/$DR_NAME.tex
 
 # Clean Up
-rm *.aux *.log *.out *.bcf *.run.xml
+rm -f *.aux *.log *.out *.bcf *.run.xml
 
 # Add the PDF to output
 rm -rf $DR_OUT
