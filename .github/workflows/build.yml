@@ -1,0 +1,40 @@
+name: Publish Resume
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Prepare Build
+        run: |
+          apt update && apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
+
+      - name: Add Version
+        run: |
+          apt-get install uuid-runtime -y
+          VERSION=$(uuidgen | rev | cut -d- -f1 | rev)
+          sed -i -e "s/__VERSION__/$VERSION/" src/resume.tex
+      
+      - name: Convert
+        run: cd src && pdflatex resume.tex
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Deploy
+        run: |
+          chmod +x ./deploy/deploy.sh
+          ./deploy/deploy.sh
+        env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
