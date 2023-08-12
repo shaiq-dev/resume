@@ -20,6 +20,7 @@ jobs:
         run: |
           sudo apt-get install uuid-runtime -y
           VERSION=$(uuidgen | rev | cut -d- -f1 | rev)
+          echo "RESUME_VERSION=$VERSION" >> "$GITHUB_ENV"
           sed -i -e "s/__VERSION__/$VERSION/" src/resume.tex
       
       - name: Convert
@@ -35,6 +36,6 @@ jobs:
       - name: Deploy
         run: |
           sudo chmod +x ./deploy/deploy.sh
-          ./deploy/deploy.sh --version $VERSION
+          ./deploy/deploy.sh --version $RESUME_VERSION
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
