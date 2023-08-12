@@ -14,11 +14,11 @@ jobs:
       
       - name: Prepare Build
         run: |
-          apt update && apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
+          sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
 
       - name: Add Version
         run: |
-          apt-get install uuid-runtime -y
+          sudo apt-get install uuid-runtime -y
           VERSION=$(uuidgen | rev | cut -d- -f1 | rev)
           sed -i -e "s/__VERSION__/$VERSION/" src/resume.tex
       
@@ -34,7 +34,7 @@ jobs:
       
       - name: Deploy
         run: |
-          chmod +x ./deploy/deploy.sh
+          sudo chmod +x ./deploy/deploy.sh
           ./deploy/deploy.sh
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
