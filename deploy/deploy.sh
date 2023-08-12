@@ -25,13 +25,14 @@ done
 pushd .
 cd handlers
 zip -r dresume.zip index.js
-aws s3 cp ./dresume.zip s3://${S3_BUCKET}/lambda
+aws s3 cp ./dresume.zip s3://${S3_BUCKET}/lambda/
 popd
 
 # Deploy the build resume to S3
 pushd .
 cd src
 mv ./resume.pdf ./resume-${VERSION}.pdf
+aws s3 cp ./resume-${VERSION}.pdf s3://${S3_BUCKET}/resumes/
 popd
 
 # Deploy the stack
