@@ -65,11 +65,9 @@ Resources:
     DependsOn: ApiGatewayMethod
     Properties:
       RestApiId: !Ref ApiGateway
-      StageName: prod
 
-  MyApiGatewayStage:
+  ApiGatewayStage:
     Type: AWS::ApiGateway::Stage
     Properties:
       RestApiId: !Ref ApiGateway
       DeploymentId: !Ref ApiGatewayDeployment
-      StageName: prod
