@@ -11,7 +11,7 @@ Parameters:
     Default: dresume-api-gateway
   ApiGatewayStageName:
     Type: String
-    Ddefault: call
+    Default: call
   ApiGatewayHTTPMethod:
     Type: String
     Default: GET
@@ -43,7 +43,7 @@ Resources:
   ApiGatewayDeployment:
     Type: AWS::ApiGateway::Deployment
     DependsOn: 
-      - ApiGatewayMethod
+      - ApiGatewayRootMethod
     Properties:
       RestApiId: !Ref ApiGateway
       StageName: !Ref ApiGatewayStageName
