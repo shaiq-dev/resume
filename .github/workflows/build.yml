@@ -36,6 +36,4 @@ jobs:
       - name: Deploy
         run: |
           sudo chmod +x ./deploy/deploy.sh
-          ./deploy/deploy.sh --version $RESUME_VERSION
-        env:
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          ./deploy/deploy.sh --version $RESUME_VERSION --origins ${{ secrets.ALLOWED_ORIGINS }} --bucket ${{ secrets.S3_BUCKET }}
