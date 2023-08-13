@@ -2,6 +2,19 @@ const AWS = require('aws-sdk')
 
 const handler = async (event, context) => {
   try {
+
+    const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",") || []
+    const origin = event.headers.Origin || event.headers.origin;
+    
+    if (!allowedOrigins.includes(origin)) {
+      return {
+        statusCode: 401,
+        body: JSON.stringify({
+          message: 'Access Denied',
+        }),
+      }
+    }
+
     const s3 = new AWS.S3()
     const bucket = process.env.BUCKET
 
@@ -30,7 +43,7 @@ const handler = async (event, context) => {
     return {
       statusCode: 200,
       headers: {
-        "Access-Control-Allow-Origin": process.env.ALLOWED_ORIGINS, 
+        "Access-Control-Allow-Origin": origin, 
         "Access-Control-Allow-Credentials": true,
       },
       body: JSON.stringify({
