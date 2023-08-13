@@ -84,10 +84,11 @@ Resources:
             Statement:
               - Action:
                   - s3:GetObject
+                  - s3:ListBucket
                 Effect: Allow
                 Resource:
+                  - !Sub arn:aws:s3:::${BucketName}
                   - !Sub arn:aws:s3:::${BucketName}/*
           PolicyName: dresume-lambda-policy
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-        
