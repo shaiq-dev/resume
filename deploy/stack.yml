@@ -6,9 +6,48 @@ Parameters:
   LambdaCodeKey:
     Type: String
     Description: Key of the Lambda code file in the S3 bucket
-
+  ApiGatewayName:
+    Type: String
+    Default: dresume-api-gateway
+  ApiGatewayStageName:
+    Type: String
+    Ddefault: call
+  ApiGatewayHTTPMethod:
+    Type: String
+    Default: GET
 
 Resources:
+
+  ApiGateway:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      EndpointConfiguration:
+        Types:
+          - REGIONAL
+      Name: !Ref ApiGatewayName
+
+  ApiGatewayRootMethod:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref ApiGateway
+      ResourceId: !GetAtt ApiGateway.RootResourceId
+      HttpMethod: !Ref ApiGatewayHTTPMethod
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations
+          - LambdaArn: !GetAtt LambdaFunction.Arn
+
+  ApiGatewayDeployment:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn: 
+      - ApiGatewayMethod
+    Properties:
+      RestApiId: !Ref ApiGateway
+      StageName: !Ref ApiGatewayStageName
+
   LambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
@@ -19,6 +58,14 @@ Resources:
         Code:
           S3Bucket: !Ref BucketName
           S3Key: !Ref LambdaCodeKey
+  
+  LambdaApiGatewayInvoke:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt LambdaFunction.Arn
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${ApiGateway}/${ApiGatewayStageName}/${ApiGatewayHTTPMethod}/
 
   LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -33,41 +80,3 @@ Resources:
             Action: sts:AssumeRole
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
-
-  ApiGateway:
-    Type: AWS::ApiGateway::RestApi
-    Properties:
-      Name: dresume-api-gateway
-
-  ApiGatewayResource:
-    Type: AWS::ApiGateway::Resource
-    Properties:
-      RestApiId: !Ref ApiGateway
-      ParentId: !GetAtt ApiGateway.RootResourceId
-      PathPart: dresume
-
-  ApiGatewayMethod:
-    Type: AWS::ApiGateway::Method
-    Properties:
-      RestApiId: !Ref ApiGateway
-      ResourceId: !Ref ApiGatewayResource
-      HttpMethod: GET
-      AuthorizationType: NONE
-      Integration:
-        Type: AWS_PROXY
-        IntegrationHttpMethod: POST
-        Uri: !Sub
-          - arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations
-          - LambdaArn: !GetAtt LambdaFunction.Arn
-
-  ApiGatewayDeployment:
-    Type: AWS::ApiGateway::Deployment
-    DependsOn: ApiGatewayMethod
-    Properties:
-      RestApiId: !Ref ApiGateway
-
-  ApiGatewayStage:
-    Type: AWS::ApiGateway::Stage
-    Properties:
-      RestApiId: !Ref ApiGateway
-      DeploymentId: !Ref ApiGatewayDeployment
