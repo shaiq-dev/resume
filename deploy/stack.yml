@@ -12,7 +12,7 @@ Resources:
   LambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
-        FunctionName: resume
+        FunctionName: dresume
         Runtime: nodejs14.x
         Handler: index.handler
         Role: !GetAtt LambdaExecutionRole.Arn
@@ -23,7 +23,7 @@ Resources:
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: resume-lambda-execution-role
+      RoleName: dresume-lambda-execution-role
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -37,14 +37,14 @@ Resources:
   ApiGateway:
     Type: AWS::ApiGateway::RestApi
     Properties:
-      Name: resume-api-gateway
+      Name: dresume-api-gateway
 
   ApiGatewayResource:
     Type: AWS::ApiGateway::Resource
     Properties:
       RestApiId: !Ref ApiGateway
       ParentId: !GetAtt ApiGateway.RootResourceId
-      PathPart: /
+      PathPart: dresume
 
   ApiGatewayMethod:
     Type: AWS::ApiGateway::Method
