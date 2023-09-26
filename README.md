@@ -1,6 +1,6 @@
 # DResume
 
-[![Publish Resume](https://github.com/shaiq-dev/Resume/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/shaiq-dev/Resume/actions/workflows/publish.yml)
+[![Publish Resume](https://github.com/shaiq-dev/Resume/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/shaiq-dev/Resume/actions/workflows/build.yml)
 
 The resume is written in latex and uses **`Alta CV`** template. Devops part is based on the following architecture.
 
