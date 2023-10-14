@@ -6,10 +6,5 @@ The resume is written in latex and uses **`Alta CV`** template. Devops part is b
 
 ![AWS Architecture](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Gz9X2QurWw4B9gvroJgHYA.jpeg)
 
-On each commit to main branch, a new CodeBuild deployment is created via GitHub actions. CodeBuild copies the changes to EC2 and runs some hooks defined in `appspec.yml`. 
-
-The **build** hook compiles the latex source code into a pdf and **process_doc** upload the pdf to a S3 bucket.
-
-**Handlres** folder has a lambda function that fetches the latest resume from the S3 bucket and returns a S3 signed url for it. The lambda function is used with github pages (Check the [gh-pages](https://github.com/shaiq-dev/Resume/tree/gh-pages) branch).
 
 I have written a complete tutorial on [medium](https://shaiqkar.medium.com/) for this project. [Check that out](https://shaiqkar.medium.com/build-a-devopsified-resume-with-github-and-aws-21c0e38df1c4)
