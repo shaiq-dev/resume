@@ -4,7 +4,7 @@
 
 The resume is written in latex and uses **`Alta CV`** template. Devops part is based on the following architecture.
 
-![AWS Architecture](https://miro.medium.com/max/1252/1*C-KCbCECdL0Vh5bfgTiafg.jpeg)
+![AWS Architecture](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Gz9X2QurWw4B9gvroJgHYA.jpeg)
 
 On each commit to main branch, a new CodeBuild deployment is created via GitHub actions. CodeBuild copies the changes to EC2 and runs some hooks defined in `appspec.yml`. 
 
