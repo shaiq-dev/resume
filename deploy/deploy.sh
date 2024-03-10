@@ -10,8 +10,8 @@ BUCKET_NAME=$(aws cloudformation describe-stacks --stack-name resume-storage | j
 
 # Zip and upload the lambda to bucket
 pushd .
-cd handlers
-zip -r resume-${VERSION}.zip index.js
+cd lambda
+zip -r resume-${VERSION}.zip handlers/resume.js
 aws s3 cp ./resume-${VERSION}.zip s3://${BUCKET_NAME}/lambda/
 popd
 

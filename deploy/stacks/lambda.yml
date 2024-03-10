@@ -56,7 +56,7 @@ Resources:
       Properties:
         FunctionName: resume
         Runtime: nodejs20.x
-        Handler: index.handler
+        Handler: resume.handler
         Role: !GetAtt LambdaExecutionRole.Arn
         Code:
           S3Bucket: !Ref BucketName
