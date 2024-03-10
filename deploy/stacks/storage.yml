@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Resources:
+
+  Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: "resume-shaiqkar-dev"
+
+Outputs:
+
+  BucketName:
+    Value: !Ref Bucket
+    Description: "Name of the S3 bucket created"
