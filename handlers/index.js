@@ -20,7 +20,7 @@ const handler = async (event, context) => {
 
     const params = {
       Bucket: bucket,
-      Prefix: "resumes/"
+      Prefix: "resume/"
     }
 
     const data = await s3.listObjects(params).promise()
