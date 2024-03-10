@@ -1,0 +1,43 @@
+name: Upload To S3
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read    
+
+jobs:
+  UploadResumeToS3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      # - name: Prepare Build
+      #   run: |
+      #     sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
+
+      - name: Add Version
+        run: |
+          sudo apt-get install uuid-runtime -y
+          v=$(uuidgen | rev | cut -d- -f1 | rev)
+          echo "VERSION=$v" >> "$GITHUB_ENV"
+          sed -i -e "s/__VERSION__/$v/" src/resume.tex
+      
+      # - name: Build
+      #   run: cd src && pdflatex resume.tex
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::654654198429:role/RoleForResumeGithubActions
+          role-session-name: SessionResumeGithubActions
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+      - name: Upload to S3
+        run: |
+          sudo chmod +x ./deploy/deploy.sh
+          ./deploy/deploy.sh --version $VERSION
