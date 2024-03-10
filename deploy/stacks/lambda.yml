@@ -8,7 +8,7 @@ Parameters:
     Description: Key of the Lambda code file in the S3 bucket
   ApiGatewayName:
     Type: String
-    Default: dresume-api-gateway
+    Default: resume
   ApiGatewayStageName:
     Type: String
     Default: call
@@ -77,7 +77,7 @@ Resources:
   LambdaExecutionRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: dresume-lambda-execution-role
+      RoleName: RoleForResumeLambdaExecution
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -96,6 +96,6 @@ Resources:
                 Resource:
                   - !Sub arn:aws:s3:::${BucketName}
                   - !Sub arn:aws:s3:::${BucketName}/*
-          PolicyName: dresume-lambda-policy
+          PolicyName: AwsAccessForResumeLambda
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
