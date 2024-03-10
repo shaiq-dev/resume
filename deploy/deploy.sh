@@ -24,4 +24,4 @@ popd
 
 # Deploy the Lambda stack
 STACK_PARAMETERS="BucketName=${BUCKET_NAME} LambdaCodeKey=lambda/resume-${VERSION}.zip AllowedOrigins=*"
-aws cloudformation deploy --template-file "deploy/stack/lambda.yml" --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --stack-name resume-lambda --no-fail-on-empty-changeset --parameter-overrides ${STACK_PARAMETERS}
+aws cloudformation deploy --template-file "deploy/stacks/lambda.yml" --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --stack-name resume-lambda --no-fail-on-empty-changeset --parameter-overrides ${STACK_PARAMETERS}

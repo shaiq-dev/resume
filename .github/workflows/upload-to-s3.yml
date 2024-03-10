@@ -22,10 +22,7 @@ jobs:
 
       - name: Add Version
         run: |
-          sudo apt-get install uuid-runtime -y
-          v=$(uuidgen | rev | cut -d- -f1 | rev)
-          echo "VERSION=$v" >> "$GITHUB_ENV"
-          sed -i -e "s/__VERSION__/$v/" src/resume.tex
+          sed -i -e "s/__VERSION__/$(git rev-parse --short HEAD)/" src/resume.tex
       
       - name: Build
         run: cd src && pdflatex resume.tex
@@ -40,4 +37,4 @@ jobs:
       - name: Upload to S3
         run: |
           sudo chmod +x ./deploy/deploy.sh
-          ./deploy/deploy.sh --version $VERSION
+          ./deploy/deploy.sh
