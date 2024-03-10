@@ -54,7 +54,7 @@ Resources:
   LambdaFunction:
       Type: AWS::Lambda::Function
       Properties:
-        FunctionName: dresume
+        FunctionName: resume
         Runtime: nodejs20.x
         Handler: index.handler
         Role: !GetAtt LambdaExecutionRole.Arn
