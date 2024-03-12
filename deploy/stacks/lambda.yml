@@ -18,6 +18,9 @@ Parameters:
   AllowedOrigins:
     Type: String
     Description: Allowed origins for resume api
+  DomainName:
+    Type: String
+    Default: *.shaiqkar.dev
 
 Resources:
 
@@ -50,6 +53,27 @@ Resources:
     Properties:
       RestApiId: !Ref ApiGateway
       StageName: !Ref ApiGatewayStageName
+  
+  ApiGatewayDomainCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: *.shaiqkar.dev
+      ValidationMethod: EMAIL
+
+  ApiGatewayDomainName:
+    Type: AWS::ApiGatewayV2::DomainName
+    Properties:
+      DomainName: resume.shaiqkar.dev
+      DomainNameConfigurations:
+        - CertificateArn: !Ref ApiGatewayDomainCertificate
+
+  ApiGatewayApiMapping:
+    Type: AWS::ApiGatewayV2::ApiMapping
+    Properties:
+      ApiId: !Ref ApiGateway
+      DomainName: !Ref ApiGatewayDomainName
+      Stage: !Ref ApiGatewayStageName
+      ApiMappingKey: "" 
 
   LambdaFunction:
       Type: AWS::Lambda::Function
