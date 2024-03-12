@@ -18,9 +18,6 @@ Parameters:
   AllowedOrigins:
     Type: String
     Description: Allowed origins for resume api
-  DomainName:
-    Type: String
-    Default: *.shaiqkar.dev
 
 Resources:
 
