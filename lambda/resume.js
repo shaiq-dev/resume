@@ -4,18 +4,6 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 export const handler = async (event, context) => {
   try {
 
-    const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",") || []
-    const origin = event.headers.Origin || event.headers.origin;
-    
-    if (!allowedOrigins.includes(origin)) {
-      return {
-        statusCode: 401,
-        body: JSON.stringify({
-          status: 'ACCESS_DENIED',
-        }),
-      }
-    }
-
     const s3 = new S3Client();
     const bucket = process.env.BUCKET
 
@@ -39,9 +27,10 @@ export const handler = async (event, context) => {
     }));
 
     return {
-      statusCode: 200,
+      statusCode: 302,
       headers: {
-        "Access-Control-Allow-Origin": origin, 
+        "Location": url,
+        "Access-Control-Allow-Origin": "*", 
         "Access-Control-Allow-Credentials": true,
       },
       body: JSON.stringify({
