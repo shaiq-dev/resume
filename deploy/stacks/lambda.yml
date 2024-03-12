@@ -15,9 +15,6 @@ Parameters:
   ApiGatewayHTTPMethod:
     Type: String
     Default: GET
-  AllowedOrigins:
-    Type: String
-    Description: Allowed origins for resume api
 
 Resources:
 
@@ -85,7 +82,6 @@ Resources:
         Environment:
           Variables:
             BUCKET: !Ref BucketName
-            ALLOWED_ORIGINS: !Ref AllowedOrigins
   
   LambdaApiGatewayInvoke:
     Type: AWS::Lambda::Permission
@@ -120,3 +116,9 @@ Resources:
           PolicyName: AwsAccessForResumeLambda
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+Outputs:
+
+  ApiGatewayDomainName:
+    Description: The domain name of the API Gateway
+    Value: !Ref ApiGatewayDomainName

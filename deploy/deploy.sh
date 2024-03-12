@@ -23,5 +23,5 @@ aws s3 cp ./resume-${VERSION}.pdf s3://${BUCKET_NAME}/resume/
 popd
 
 # Deploy the Lambda stack
-STACK_PARAMETERS="BucketName=${BUCKET_NAME} LambdaCodeKey=lambda/resume-${VERSION}.zip AllowedOrigins=*"
+STACK_PARAMETERS="BucketName=${BUCKET_NAME} LambdaCodeKey=lambda/resume-${VERSION}.zip"
 aws cloudformation deploy --template-file "deploy/stacks/lambda.yml" --capabilities CAPABILITY_IAM CAPABILITY_NAMED_IAM --stack-name resume-lambda --no-fail-on-empty-changeset --parameter-overrides ${STACK_PARAMETERS}
