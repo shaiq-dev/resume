@@ -5,9 +5,9 @@ Auto publish your new resume to a custom subdomain and save the old iterations i
 ### Deploy your own
 - Clone the repo and modify the latex template inside the `src` dir or add your own latex template there. If you are adding a new template, make sure to modify the [action](https://github.com/shaiq-dev/resume/blob/main/.github/workflows/upload-to-s3.yml#L21) file to include any new dependencies.
 
-- For authenticating GitHub actions with AWS, I am using OIDC-standard short-term credentials authentication. Follow this amazing [guide](https://dev.to/slsbytheodo/configure-authentication-to-your-aws-account-in-your-github-actions-ci-13p3) to setup on your account. 
-<br /> 
-[See also](https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/) this one from aws/
+- For authenticating GitHub actions with AWS, I am using OIDC-standard short-term credentials authentication. Follow this amazing [guide](https://dev.to/slsbytheodo/configure-authentication-to-your-aws-account-in-your-github-actions-ci-13p3) to setup on your account.
+   
+    [See also](https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/) this one from aws.
 
 - The iam role assigned to GitHub actions, uses following policy.
   ```json
