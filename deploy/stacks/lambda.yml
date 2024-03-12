@@ -57,7 +57,7 @@ Resources:
   ApiGatewayDomainCertificate:
     Type: AWS::CertificateManager::Certificate
     Properties:
-      DomainName: *.shaiqkar.dev
+      DomainName: "*.shaiqkar.dev"
       ValidationMethod: EMAIL
 
   ApiGatewayDomainName:
