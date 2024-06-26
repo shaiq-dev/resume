@@ -1,5 +1,5 @@
 \documentclass[10pt,a4paper,ragged2e]{classes/altacv}
-\geometry{left=2cm,right=10cm,marginparwidth=6.8cm,marginparsep=1.2cm,top=1.25cm,bottom=1.25cm}
+\geometry{left=1.2cm,right=10cm,marginparwidth=7.8cm,marginparsep=1cm,top=1.25cm,bottom=1.25cm}
 \ifxetexorluatex
   \setmainfont{Carlito}
 \else
@@ -10,7 +10,7 @@
 
 %% Document Colors
 
-\definecolor{Black}{HTML}{000000}
+\definecolor{Black}{HTML}{1D1C1D}
 \definecolor{Grey}{HTML}{2E2E2E}
 \colorlet{heading}{Black}
 \colorlet{accent}{Black}
@@ -27,9 +27,10 @@
 \personalinfo{
   \email{\href{mailto:shaiqkar@gmail.com}{shaiqkar@gmail.com}}
   \phone{+917006343764}
-  \location{Bangalore, India}
-  \linkedin{\href{https://linkedin.com/in/shaiqkar}{linkedin.com/in/shaiqkar}}
-  \github{\href{https://github.com/shaiq-dev}{github.com/shaiq-dev}}
+  \location{Bengaluru, India}
+  \linkedin{\href{https://linkedin.com/in/shaiqkar}{shaiqkar}}
+  \github{\href{https://github.com/shaiq-dev}{shaiq-dev}}
+  \homepage{\href{https://shaiqkar.dev}{shaiqkar.dev}}
 }
 
 %% Make the header extend all the way to the right.
@@ -44,49 +45,40 @@
 
 \cvsection[sidebar]{Experience}
 
-\cvevent{WebKnot Technologies}{Tech Lead}{Jul 2022 - Present}{Bangalore}
-\cvevent{}{SDE Intern}{Dec 2021 - Jul 2022}{Remote}
-\begin{itemize}
-\item Chaired the development of Paws CRM, overseeing the design and implementation of the serverless microservices backend, service discovery, and microservice communication protocol.
-\item Lead the development team in the transition of the existing monolithic backend to a modern, event-driven, serverless microservice architecture. Designed and establish the serverless architecture from the ground up.
-\item Implement strategies to reduce AWS billing post-migration to serverless infrastructure by 45\%.
-
+\cvCompany{Webknot Technologies}{Technical Lead}{07/2022 - Present\hfill Bengaluru}
+\cvevent{}{HDFC Bank \textnormal{-- Contract}}{\textit{09/2022 - Present\hfill Bengaluru}}
+\begin{itemize}[itemsep=6pt]
+\normalsize
+\item Designing distributed flows to achieve \textbf{sub-3 second} update time for modifying millions of billers using \textbf{GCS gRPC channels}, \textbf{Pub/Sub} and \textbf{Postgres Copy}.
+\item Developed a full-text search engine on top of Postgres full-text, serving \textbf{120 million} users. Added a custom C extension to generate the search vectors.
+\item Written \textbf{REST/gRPC} API's and \textbf{Scalable Micro Services} in \textbf{Spring Boot} and working with cross functional teams including Admin, UPI and NetBanking.
 \end{itemize}
-
+\vspace{6pt}
+\cvevent{}{SleevesUp \textnormal{-- Contract}}{\textit{08/2022 - 08/2023\hfill Bengaluru}}
+\begin{itemize}[itemsep=6pt]
+\normalsize
+\item Refactored (\textit{migrated from spring boot 2.4.0 to 2.6.6}) and maintained \textbf{38} Spring Micro Services and \textbf{Kafka Sync Connectors} for Scorz - a large-scale multi-sensory in-home sports fan engagement platform.
+\item Implemented multi tenancy support in the generic scorz app (flutter with native android and swift sdk's).
+\end{itemize}
 \divider
-
-\cvevent{Acumensa Technologies}{Backend Developer}{July 2021 - Nov 2021}{Remote}
-\begin{itemize}
-\item Designed and implemented a scalable, event-driven microservice architecture for the EV charging renting app, ensuring that it can handle high levels of traffic and data processing.
-\item Oversee the development of the charge distributor and API Gateway, ensuring that they are built to handle high volumes of requests and data.
+\cvCompany{Internships}{}{}
+\cvevent{}{Webknot Technologies \textnormal{-- SDE Intern}}{\textit{12/2022 - 06/2022\hfill Remote}}
+\begin{itemize}[itemsep=6pt]
+\normalsize
+\item Spearheaded the development of Paws CRM, directing the design and implementation of its \textbf{serverless} backend using \textbf{AWS Lambda}.
+\item Developed a library like \textbf{jsforce} to utilize the CRM API. It encapsulates the access to various APIs provided by Paws in asynchronous JavaScript function calls and supports \textbf{multi-tenancy}.
 \end{itemize}
-
-% Education Section
-
-\cvsection{Education}
-
-\cvevent{Presidency University}{B.Tech in Computer Science}{}{Bangalore,India}
-Graduation Year: 2022\hspace{5mm}\textbf{CGPA: 8.27/10 }\\
-\smallskip
-Relevant Coursework : Data Structures \& Algorithms, Networking, Computer Architecture, Graph Theory, Discrete Mathematics, Theory of Computation, DBMS, Operating Systems, IoT.
-
-
-%% Technical Skills Section
-
-\cvsection{Technical Skills}
-\smallskip
-\begin{itemize}
-\item \textbf{Programming}: Proficient in Python, Java, C, JavaScript. Experienced with C++, SQL, PHP, Kotlin.
-\smallskip
-\item \textbf{Development}: HTML, Typescript, CSS, SCSS.
-\smallskip
-\item \textbf{DevOps Tools and Utilities}: Git, Docker, AWS, React, Next, Nest, Kafka, Spring Boot, Hibernate, Webpack, Babel, GraphQL, Flask, FastAPI, Django, MongoDB, Postgresql, PyQT, Linux  
-\smallskip
+\vspace{6pt}
+\cvevent{}{Acumensa Technologies \textnormal{-- Backend Intern}}{\textit{07/2021 - 11/2021\hfill Remote}}
+\begin{itemize}[itemsep=6pt]
+\normalsize
+\item Migrated PHP/MySQL configuration to \textbf{Next.JS with MongoDB}. Transitioned to \textbf{AWS} instance of \textbf{RHEL} with
+Amplify, resulting in a \textbf{37\%} cost reduction.
 \end{itemize}
 
 \smallskip
 \begin{footnotesize}
-GitHub \number \month .\number\year.__VERSION__
+GitHub \number \month .\number\year.version
 \end{footnotesize}
 \clearpage
 \end{document}
