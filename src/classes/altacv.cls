@@ -188,14 +188,27 @@
 }
 
 % v1.1.4: fixes inconsistent font size
-\newcommand{\cvevent}[4]{%
+\newcommand{\cvevent}[3]{
   {\large\color{emphasis}#1\par}
   \smallskip\normalsize
   \ifstrequal{#2}{}{}{
   \textbf{\color{accent}#2}\par
   \smallskip}
-  \ifstrequal{#3}{}{}{{\small\makebox[0.5\linewidth][l]{\faCalendar\hspace{0.5em}#3}}}%
-  \ifstrequal{#4}{}{}{{\small\makebox[0.5\linewidth][l]{\faMapMarker\hspace{0.5em}#4}}}\par
+  \ifstrequal{#3}{}{}{
+    {\normalsize#3}\par
+  }
+  \medskip\normalsize
+}
+
+\newcommand{\cvCompany}[3]{
+  {\Large\color{emphasis}\textbf{#1}\par}
+  \smallskip\large
+  \ifstrequal{#2}{}{}{
+      \color{accent}\textit{#2}\par\smallskip
+  }
+  \ifstrequal{#3}{}{}{
+    \normalsize\textit{#3}
+  }
   \medskip\normalsize
 }
 
@@ -209,7 +222,7 @@
 
 \newcommand{\cvproject}[1]{%
   {\textbf{\color{accent}#1}\par}
-  \smallskip\normalsize
+  \large\smallskip
 }
 
 \newcommand{\cvtag}[1]{%
