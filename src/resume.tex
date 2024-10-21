@@ -46,39 +46,50 @@
 \cvsection[sidebar]{Experience}
 
 \cvCompany{Webknot Technologies}{Technical Lead}{07/2022 - Present\hfill Bengaluru}
-\cvevent{}{HDFC Bank \textnormal{-- Contract}}{\textit{09/2022 - Present\hfill Bengaluru}}
+
+\cvevent{}{HDFC Bank Mobile Banking}{}
 \begin{itemize}[itemsep=6pt]
 \normalsize
-\item Designing distributed flows to achieve \textbf{sub-3 second} update time for modifying millions of billers using \textbf{GCS gRPC channels}, \textbf{Pub/Sub} and \textbf{Postgres Copy}.
-\item Developed a full-text search engine on top of Postgres full-text, serving \textbf{120 million} users. Added a custom C extension to generate the search vectors.
+\item Designed and implemented a data synchronization pipeline to efficiently update merchant billing details for the banking app. Leveraged GCS gRPC channels, Pub/Sub, and \textbf{Postgres Copy} to reliably update \textbf{>48K} merchant records with a \textbf{sub-3 second} processing time.
+
+\item Developed a full-text search engine utilizing Postgres full-text search capabilities, serving \textbf{10M} users. Optimized the solution by pre-generating \textbf{>8M} ts vectors based on merchant names, and leveraging Postgres functional indexes to enable sub-second query performance.
+
 \item Written \textbf{REST/gRPC} API's and \textbf{Scalable Micro Services} in \textbf{Spring Boot} and working with cross functional teams including Admin, UPI and NetBanking.
+
 \end{itemize}
 \vspace{6pt}
-\cvevent{}{SleevesUp \textnormal{-- Contract}}{\textit{08/2022 - 08/2023\hfill Bengaluru}}
+
+\cvevent{}{ScaleLinode \textnormal{-- Collabration with Akamai}}{}
 \begin{itemize}[itemsep=6pt]
 \normalsize
-\item Refactored (\textit{migrated from spring boot 2.4.0 to 2.6.6}) and maintained \textbf{38} Spring Micro Services and \textbf{Kafka Sync Connectors} for Scorz - a large-scale multi-sensory in-home sports fan engagement platform.
+
+\item Spearheaded the design and development of a highly available auto-scaling platform for virtual machines on Linode, replicating key AWS capabilities. Architected 10+ microservices on Kubernetes to manage VM lifecycle, secure credential storage, and CI/CD automation.
+
+\item Created \textbf{Gather}, a real-time system metrics collection tool using gRPC streams, with concurrent data gathering of \textbf{20+} system metrics and \textbf{time-series} storage.
+
+\item Implemented internal Go packages \textbf{Quark} for distributed ID generation and \textbf{kManager} for seamless Kubernetes resource and Helm release's management.
+
+\end{itemize}
+\vspace{6pt}
+
+\cvevent{}{SleevesUp}{}
+\begin{itemize}[itemsep=6pt]
+\normalsize
+\item Refactored (\textit{migrated from spring boot 2.4.0 to 3.0.0}) and maintained \textbf{23} Spring Micro Services and \textbf{Kafka Sync Connectors} for Scorz - a large-scale multi-sensory in-home sports fan engagement platform.
 \item Implemented multi tenancy support in the generic scorz app (flutter with native android and swift sdk's).
 \end{itemize}
-\divider
-\cvCompany{Internships}{}{}
-\cvevent{}{Webknot Technologies \textnormal{-- SDE Intern}}{\textit{12/2022 - 06/2022\hfill Remote}}
-\begin{itemize}[itemsep=6pt]
-\normalsize
-\item Spearheaded the development of Paws CRM, directing the design and implementation of its \textbf{serverless} backend using \textbf{AWS Lambda}.
-\item Developed a library like \textbf{jsforce} to utilize the CRM API. It encapsulates the access to various APIs provided by Paws in asynchronous JavaScript function calls and supports \textbf{multi-tenancy}.
-\end{itemize}
-\vspace{6pt}
-\cvevent{}{Acumensa Technologies \textnormal{-- Backend Intern}}{\textit{07/2021 - 11/2021\hfill Remote}}
-\begin{itemize}[itemsep=6pt]
-\normalsize
-\item Migrated PHP/MySQL configuration to \textbf{Next.JS with MongoDB}. Transitioned to \textbf{AWS} instance of \textbf{RHEL} with
-Amplify, resulting in a \textbf{37\%} cost reduction.
-\end{itemize}
 
+\cvsection{Education}
+\cvevent{Presidency University, Bengaluru}{B.Tech in CSE (Computer Science \& Engineering)}{\textit{2018 - 2022 \hfill 8.27 CGPA}}
+\smallskip
+\normalsize
+\textbf{Relevant Coursework} : Data Structures \& Algorithms, Networking, Computer Architecture, DBMS, Graph Theory, Discrete Mathematics, Theory of Computation, Operating Systems, IoT.
+
+\vspace{16pt}
 \smallskip
 \begin{footnotesize}
 GitHub \number \month .\number\year.version
 \end{footnotesize}
+
 \clearpage
 \end{document}

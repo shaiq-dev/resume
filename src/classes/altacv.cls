@@ -201,10 +201,10 @@
 }
 
 \newcommand{\cvCompany}[3]{
-  {\Large\color{emphasis}\textbf{#1}\par}
-  \smallskip\large
+  {\large\color{emphasis}\textbf{#1}}
+  \large
   \ifstrequal{#2}{}{}{
-      \color{accent}\textit{#2}\par\smallskip
+      \hfill\color{accent}\textit{#2}\par\smallskip
   }
   \ifstrequal{#3}{}{}{
     \normalsize\textit{#3}
@@ -221,8 +221,8 @@
 }
 
 \newcommand{\cvproject}[1]{%
-  {\textbf{\color{accent}#1}\par}
-  \large\smallskip
+  {\large\textbf{\color{accent}#1}\par}
+  \smallskip
 }
 
 \newcommand{\cvtag}[1]{%
