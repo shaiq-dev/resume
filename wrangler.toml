@@ -1,0 +1,12 @@
+name = "shaiq-resume-api"
+main = "worker/index.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "RESUME_BUCKET"
+bucket_name = "shaiq-resume-storage"
+
+[env.production]
+routes = [{ pattern = "resume.shaiq.dev/*", zone_name = "shaiq.dev" }]
