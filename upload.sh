@@ -5,11 +5,8 @@ set -euo pipefail
 VERSION=$(git rev-parse --short HEAD)
 BUCKET=shaiq-resume-storage
 
-# Install aws cli (R2 is S3 compatible)
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-sudo ./aws/install
-
+# aws cli is pre installed in github hosted runners
+# R2 is S3 API compatible
 aws configure set aws_access_key_id $CLOUDFLARE_R2_ACCESS_KEY_ID
 aws configure set aws_secret_access_key $CLOUDFLARE_R2_SECRET_ACCESS_KEY
 aws configure set default.region auto
