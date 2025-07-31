@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  UploadResumeToS3:
+  UploadResumeToR2:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
