@@ -1,0 +1,17 @@
+{
+  "name": "resume-worker",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "author": "Shaiq Kar",
+  "license": "MIT",
+  "dependencies": {
+    "wrangler": "^4.27.0"
+  }
+}
