@@ -2,19 +2,6 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url)
 
-    // Handle CORS preflight requests
-    if (request.method === 'OPTIONS') {
-      return new Response(null, {
-        status: 204,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, If-None-Match',
-          'Access-Control-Max-Age': '86400',
-        },
-      })
-    }
-
     if (url.pathname === '/' || url.pathname === '') {
       return handleResumeRequest(env, request)
     }
@@ -30,7 +17,6 @@ const handleResumeRequest = async (env, request) => {
     if (!obj) {
       return new Response('Resume not found', {
         status: 404,
-        headers: CORS_HEADERS,
       })
     }
 
@@ -41,7 +27,6 @@ const handleResumeRequest = async (env, request) => {
     if (clientEtag === etag) {
       return new Response(null, {
         status: 304,
-        headers: CORS_HEADERS,
       })
     }
 
@@ -51,7 +36,6 @@ const handleResumeRequest = async (env, request) => {
       'Cache-Control': 'public, max-age=3600, must-revalidate',
       ETag: etag,
       'Last-Modified': object.uploaded.toUTCString(),
-      ...CORS_HEADERS,
     }
 
     return new Response(object.body, { headers })
@@ -60,13 +44,6 @@ const handleResumeRequest = async (env, request) => {
 
     return new Response('Internal Server Error', {
       status: 500,
-      headers: CORS_HEADERS,
     })
   }
-}
-
-const CORS_HEADERS = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, If-None-Match',
 }
