@@ -1,0 +1,40 @@
+name: Upload Resume To R2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  UploadResumeToS3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Prepare Build
+        run: |
+          sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
+
+      - name: Add Version
+        run: |
+          sed -i -e "s/__VERSION__/$(git rev-parse --short HEAD)/" src/resume.tex
+      
+      - name: Build
+        run: cd src && pdflatex resume.tex
+      
+      - name: Upload to R2
+        env:
+          CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          CLOUDFLARE_R2_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_R2_ENDPOINT: ${{ secrets.CLOUDFLARE_R2_ENDPOINT }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          ./upload.sh
+      
+      - name: Deploy Cloudflare Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
