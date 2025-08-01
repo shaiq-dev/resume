@@ -35,10 +35,10 @@ const handleResumeRequest = async (env, request) => {
       'Content-Disposition': 'inline;',
       'Cache-Control': 'public, max-age=3600, must-revalidate',
       ETag: etag,
-      'Last-Modified': object.uploaded.toUTCString(),
+      'Last-Modified': obj.uploaded.toUTCString(),
     }
 
-    return new Response(object.body, { headers })
+    return new Response(obj.body, { headers })
   } catch (error) {
     console.error('Error retrieving resume:', error)
 
