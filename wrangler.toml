@@ -10,4 +10,4 @@ r2_buckets = [
 routes = [{ pattern = "resume.shaiq.dev", custom_domain = true }]
 
 [observability.logs]
-enabled = false
+enabled = true
