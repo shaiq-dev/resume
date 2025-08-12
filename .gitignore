@@ -22,6 +22,12 @@
 *-blx.aux
 *-blx.bib
 *.run.xml
+*.aux
+*.log
+*.out
+*.toc
+*.gz
+*.tex-e
 
 ## Others
 node_modules/
