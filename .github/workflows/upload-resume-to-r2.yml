@@ -12,16 +12,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       
-      - name: Prepare Build
-        run: |
-          sudo apt update && sudo apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-extra texlive-bibtex-extra
-
-      - name: Add Version
-        run: |
-          sed -i -e "s/__VERSION__/$(git rev-parse --short HEAD)/" src/resume.tex
-      
       - name: Build
-        run: cd src && pdflatex resume.tex
+        run: |
+          ./build.sh
       
       - name: Upload to R2
         env:
