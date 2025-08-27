@@ -7,7 +7,7 @@ Automatically build and publish your LaTeX resume to a custom subdomain, while a
 
 ### 1. Fork and Clone
 ```bash
-git clone https://github.com/<your-username>/resume.git
+git clone https://github.com/shaiq-dev/resume.git
 cd resume
 ```
 
